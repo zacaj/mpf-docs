@@ -9,14 +9,17 @@ class ExampleBuilder(object):
         self.examples_root = examples_root
         self.file_types = ['.yaml', '.py']
         self.paths_to_ignore = ['data']
+        print("Example init", source_dirs, examples_root)
 
         # all of these are tuples of (full_path, partial_path)
         self.examples_sections = dict()
         for source, rst_dir in source_dirs.items():
             self.add_examples_sections(source, rst_dir)
+            print("Example add", source, rst_dir)
 
     def build(self):
         # the following build the examples folder structure
+        print("build")
         self.empty_existing_examples_folder()
         self.write_files()
         self.write_index()
@@ -131,6 +134,7 @@ class ExampleBuilder(object):
 
     def add_examples_sections(self, path, rst_path):
         for dir in os.listdir(path):
+            print("add_examples 1", dir)
             if dir.startswith('.'):
                 continue
             if dir not in self.examples_sections:
@@ -142,6 +146,7 @@ class ExampleBuilder(object):
         for full_path, dirs, files in os.walk(path):
             rel_path = os.path.abspath(full_path).replace(os.path.abspath(os.path.join(path, "..")), '')
             name_path = os.path.abspath(full_path).replace(os.path.abspath(path), '')
+            print("add_examples 2", rel_path, name_path, files)
 
             if files:
                 folders = name_path.lstrip('/').split('/')
@@ -274,6 +279,7 @@ and/or show configs.
         for folder in sorted(self.examples_sections.keys()):
             index += '   {} </examples/{}/index>\n'.format(folder, folder)
 
+        print(self.examples_root + '/index.rst')
         with open(self.examples_root + '/index.rst', 'w') as f:
             f.write(index)
 
