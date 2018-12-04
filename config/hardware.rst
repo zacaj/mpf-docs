@@ -44,6 +44,7 @@ configuration guide for that platform.)
 + ``fast`` :doc:`FAST Pinball </hardware/fast/index>` (any controller)
 + ``opp`` :doc:`Open Pinball Project </hardware/opp/index>` open source hardware
 + ``spike`` :doc:`Stern SPIKE / SPIKE 2 </hardware/spike/index>`
++ ``lisy`` :doc:`LISY1 / LISY80 </hardware/lisy/index>`
 + ``smart_virtual`` :doc:`Virtual (software only) </hardware/virtual/smart_virtual>`
   that simulates switch changes based on coil actions.
 + ``virtual`` :doc:`Virtual software-only </hardware/virtual/index>`, with no
